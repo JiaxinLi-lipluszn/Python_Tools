@@ -28,4 +28,14 @@ def writeGeneList(geneList, file, description, list_name):
         print(i, file = f)
   f.close()
   
-  
+# Load .mat file write by save() in matlab after version 7.3
+# filename: .mat file
+# variable: the variable name you want to load from the .mat file
+def loadMat(filename, variable):
+    arrays = {}
+    f = h5py.File(filename)
+    for k, v in f.items():
+        arrays[k] = np.array(v)
+    print(f'{variable} = arrays[\'{variable}\']')
+    ret = arrays[variable]
+    return ret
